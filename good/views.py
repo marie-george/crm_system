@@ -15,6 +15,7 @@ class GoodListView(View):
         }
         return render(request, 'good/good_list.html', context)
 
+
 class GoodDetailView(View):
 
     def get(self, request, *args, **kwargs):
@@ -24,6 +25,7 @@ class GoodDetailView(View):
         }
         return render(request, 'good/good_detail.html', context)
 
+
 class GoodDeleteView(View):
 
     def get(self, request, *args, **kwargs):
@@ -32,6 +34,7 @@ class GoodDeleteView(View):
     def post(self, request, *args, **kwargs):
         Good.objects.get(id=kwargs['pk']).delete()
         return redirect('good_list')
+
 
 class GoodUpdateView(View):
 
@@ -53,6 +56,7 @@ class GoodUpdateView(View):
     def post(self, request, *args, **kwargs):
         good = Good.objects.get(id=kwargs['pk'])
         good_form = GoodForm(request.POST)
+        print(good_form)
         if good_form.is_valid():
             good.name = good_form.cleaned_data['name']
             good.description = good_form.cleaned_data['description']

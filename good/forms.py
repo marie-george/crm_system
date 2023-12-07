@@ -8,5 +8,5 @@ class GoodForm(forms.ModelForm):
         fields = [
             'name',
             'description',
-            'basic_price'
+            'basic_price',
         ]

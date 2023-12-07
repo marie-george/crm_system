@@ -8,6 +8,9 @@
 <form method="post" action="{% url 'good_create' %}">
     {% csrf_token %}
     {{ form.as_p }}
+    {% for image in object.image.all %}
+    <button type="submit">Добавить</button>
+    {% endfor %}
     <button type="submit">Создать</button>
 </form>
 </body>

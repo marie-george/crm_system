@@ -17,6 +17,10 @@
         <a href="{% url 'good_detail' object.pk %}">Подробнее</a>
 
         <a href="{% url 'good_delete' object.pk %}">Удалить</a>
+        <form method="post" action="{% url 'good_delete' object.pk %}">
+            {% csrf_token %}
+            <button type="submit">Удалить</button>
+        </form>
         <a href="{% url 'good_update' object.pk %}">Обновить</a>
 
         <div class="card-body">
