@@ -5,9 +5,11 @@
     <title>Title</title>
 </head>
 <body>
-<form method="post" action="{% url 'good_update' good.pk %}">
+<form method="post" action="{% url 'good_update' good.pk %}" enctype="multipart/form-data">
     {% csrf_token %}
     {{ form.as_p }}
+    {% csrf_token %}
+    {{ image_form.as_p }}
     <button type="submit">Обновить</button>
 </form>
 </body>

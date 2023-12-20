@@ -57,11 +57,19 @@ class GoodImage(models.Model):
         on_delete=models.CASCADE,
         related_name='image',
         blank=True,
-        null=True
+        null=True,
+        # default='/default_image_static/default.jpg'
     )
 
     def __str__(self):
-        return self.image
+        return 'Hello'
+
+    # def save(self, *args, **kwargs):
+    #     print(self.image)
+    #     print(self.good)
+    #     if self.image == '':
+    #         self.image = 'default_image_static/default.jpg'
+    #     super().save(*args, **kwargs)
 
     class Meta:
         verbose_name = 'Изображение'

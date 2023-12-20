@@ -5,12 +5,11 @@
     <title>Title</title>
 </head>
 <body>
-<form method="post" action="{% url 'good_create' %}">
+<form method="post" action="{% url 'good_create' %}" enctype="multipart/form-data">
     {% csrf_token %}
     {{ form.as_p }}
-    {% for image in object.image.all %}
-    <button type="submit">Добавить</button>
-    {% endfor %}
+    {% csrf_token %}
+    {{ image_form.as_p }}
     <button type="submit">Создать</button>
 </form>
 </body>
