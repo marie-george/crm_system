@@ -60,7 +60,6 @@ class GoodUpdateView(View):
         return render(request, 'good/good_update.html', context)
 
 
-    #Думаю, должно быть то же самое, что в CreateView
     def post(self, request, *args, **kwargs):
         good = Good.objects.get(id=kwargs['pk'])
         good_form = GoodForm(request.POST)
@@ -72,7 +71,8 @@ class GoodUpdateView(View):
             good.save()
             if image_form.is_valid():
                 image_good_object = good.image.all()[0]
-                image_good_object.image = image_form.cleaned_data['image']
+                if image_form.cleaned_data['image'] is not None:
+                    image_good_object.image = image_form.cleaned_data['image']
                 image_good_object.good = good
                 image_good_object.save()
                 return redirect('good_list')
