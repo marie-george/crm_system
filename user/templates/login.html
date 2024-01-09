@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-{% block register %}
+{% block login %}
 <head>
     <title>Title</title>
 </head>
@@ -7,7 +7,7 @@
   <form method="post">
     {% csrf_token %}
     {{ form.as_p }}
-    <button type="submit">Зарегистрироваться</button>
+    <button type="submit">Войти</button>
   </form>
 </body>
 {% endblock %}

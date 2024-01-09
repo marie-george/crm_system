@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link href="https://getbootstrap.com/docs/4.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <title>Title</title>
+</head>
+<body>
+<nav class="ms-5">
+    <a class="p-2 btn btn-outline-primary" href="{% url 'good_list' %}">Список товаров</a>
+</nav>
+  {% block good_list %}{% endblock %}
+  {% block good_update %}{% endblock %}
+  {% block good_detail %}{% endblock %}
+  {% block good_delete %}{% endblock %}
+  {% block create_good %}{% endblock %}
+  {% block categories %}{% endblock %}
+  {% block login %}{% endblock %}
+  {% block register %}{% endblock %}
+</body>
+</html>
