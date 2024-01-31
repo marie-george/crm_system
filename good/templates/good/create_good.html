@@ -1,15 +1,16 @@
 {% extends 'base.html' %}
 {% block create_good %}
-<head>
-    <title>Title</title>
-</head>
-<body>
-<form method="post" action="{% url 'good_create' %}" enctype="multipart/form-data">
-    {% csrf_token %}
-    {{ form.as_p }}
-    {% csrf_token %}
-    {{ image_form.as_p }}
-    <button type="submit">Создать</button>
-</form>
-</body>
+
+<div class="card" style="width: 30rem;">
+  <div class="card-body">
+    <form method="post" action="{% url 'good_create' %}" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.as_p }}
+        {% csrf_token %}
+        {{ image_form.as_p }}
+        <button type="submit">Создать</button>
+    </form>
+  </div>
+</div>
+
 {% endblock %}

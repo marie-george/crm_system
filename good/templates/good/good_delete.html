@@ -1,12 +1,20 @@
 {% extends 'base.html' %}
 {% block good_delete %}
-<head>
-    <title>Title</title>
-</head>
-<body>
-<form method="post">
-  {% csrf_token %}
-  <button type="submit">Удалить</button>
-</form>
-</body>
+
+<div class="col">
+  <div class="card">
+    <div class="card-body">
+      <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        Уверены, что хотите удалить товар?
+        <input type="submit" class="btn btn-primary" value="Уверен">
+      </form>
+    </div>
+    <div class="card-footer">
+      <a href="{% url 'good_list' %}" class="btn btn-primary">Назад</a>
+    </div>
+  </div>
+</div>
+
+
 {% endblock %}

@@ -1,9 +1,10 @@
 from django.urls import reverse_lazy
 from django.views.generic import View, UpdateView, CreateView
 from django.shortcuts import render, redirect
+from .services.helper_db import HelperDb
 
 from .forms import GoodForm, ImageForm
-from .models import Good, GoodImage
+from .models import Good, GoodImage, GoodCategory
 
 
 class GoodListView(View):
@@ -44,14 +45,20 @@ class GoodUpdateView(View):
             initial={
                 'name': good.name,
                 'description': good.description,
-                'basic_price': good.basic_price
+                'basic_price': good.basic_price,
+                'category': good.category,
             }
         )
-        image_form = ImageForm(
-            initial={
-                'image': good.image.all()[0].image
-            }
-        )
+
+        if len(good.image.all()) == 0:
+            image_form = ImageForm()
+        else:
+            image_form = ImageForm(
+                initial={
+                    'image': good.image.all()[0].image
+                }
+            )
+
         context = {
             'form': good_form,
             'image_form': image_form,
@@ -68,14 +75,26 @@ class GoodUpdateView(View):
             good.name = good_form.cleaned_data['name']
             good.description = good_form.cleaned_data['description']
             good.basic_price = good_form.cleaned_data['basic_price']
+            if good_form.cleaned_data['category'] is None:
+                without_category = GoodCategory.objects.get(id=HelperDb.get_id_without_category())
+                good.category = without_category
+            else:
+                good.category = good_form.cleaned_data['category']
             good.save()
             if image_form.is_valid():
-                image_good_object = good.image.all()[0]
-                if image_form.cleaned_data['image'] is not None:
-                    image_good_object.image = image_form.cleaned_data['image']
-                image_good_object.good = good
-                image_good_object.save()
-                return redirect('good_list')
+                if len(good.image.all()) == 0:
+                    image_good_object = image_form.save(commit=False)
+                    image_good_object.good = good
+                    image_good_object.image = 'default_image_static/default.jpg'
+                    image_good_object.save()
+                    return redirect('good_list')
+                else:
+                    image_good_object = good.image.all()[0]
+                    if image_form.cleaned_data['image'] is not None:
+                        image_good_object.image = image_form.cleaned_data['image']
+                    image_good_object.good = good
+                    image_good_object.save()
+                    return redirect('good_list')
 
 
 class GoodCreateView(View):
@@ -97,6 +116,11 @@ class GoodCreateView(View):
              product_object.name = good_form.cleaned_data['name']
              product_object.description = good_form.cleaned_data['description']
              product_object.basic_price = good_form.cleaned_data['basic_price']
+             if good_form.cleaned_data['category'] is None:
+                 without_category = GoodCategory.objects.get(id=HelperDb.get_id_without_category())
+                 product_object.category = without_category
+             else:
+                 product_object.category = good_form.cleaned_data['category']
              product_object.save()
              if image_form.is_valid():
                  image_product_object = image_form.save(commit=False)

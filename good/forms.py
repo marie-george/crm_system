@@ -10,6 +10,7 @@ class GoodForm(forms.ModelForm):
             'name',
             'description',
             'basic_price',
+            'category',
         ]
 
 

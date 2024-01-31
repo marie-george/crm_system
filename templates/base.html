@@ -7,8 +7,10 @@
 </head>
 <body>
 <nav class="ms-5">
-    <a class="p-2 btn btn-outline-primary" href="{% url 'good_list' %}">Список товаров</a>
+    <a class="p-2 btn btn-outline-primary" href="{% url 'good_list' %}"
+       style="position: absolute; left: 70px; top: 20px; ">Список товаров</a>
 </nav>
+    {% block sidebar %}{% endblock %}
   {% block good_list %}{% endblock %}
   {% block good_update %}{% endblock %}
   {% block good_detail %}{% endblock %}

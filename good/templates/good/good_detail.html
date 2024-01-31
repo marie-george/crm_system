@@ -1,11 +1,19 @@
 {% extends 'base.html' %}
 {% block good_detail %}
-<head>
-    <title>Title</title>
-</head>
-<body>
-    <img src="{{ good.image.all.0.image.url }}" height="30%" width="30%">
+
+<div class="card" style="width: 18rem;">
+  <div class="card-body">
+    <h5 class="card-title">{{ good.name }}</h5>
+    <img src="{{ good.image.all.0.image.url }}" height="100%" width="100%">
+    <p class="card-text">{{ good.description }}</p>
+    <p class="card-text">{{ good.basic_price }}</p>
+    <p class="card-text">{{ good.category }}</p>
+    <a href="{% url 'good_list' %}" class="btn btn-outline-primary">Назад</a>
+  </div>
+</div>
+
+
     <p></p>
-    {{ good.name }}
-</body>
+
+
 {% endblock %}
