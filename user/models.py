@@ -55,6 +55,8 @@ class User(AbstractBaseUser, PermissionsMixin):
         verbose_name='дата обновления',
         auto_now=True
     )
+    image = models.ImageField(upload_to='user/', verbose_name='изображение', blank=True, null=True,
+                              default='default_image_static/default.jpg')
 
     USERNAME_FIELD = 'username'
     REQUIRED_FIELDS = ['email']

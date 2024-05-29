@@ -1,10 +1,8 @@
 from django.contrib import admin
 
-from .models import Good, GoodCategory, GoodImage
+from .models import Good, GoodCategory, GoodImage, GoodColor, GoodReview, Deal, Favourite
 
-# admin.site.register(Good)
 admin.site.register(GoodCategory)
-# admin.site.register(GoodImage)
 
 
 class ImageInline(admin.TabularInline):
@@ -15,3 +13,9 @@ class ImageInline(admin.TabularInline):
 @admin.register(Good)
 class ProductAdmin(admin.ModelAdmin):
     inlines = [ImageInline,]
+
+
+admin.site.register(GoodColor)
+admin.site.register(GoodReview)
+admin.site.register(Deal)
+admin.site.register(Favourite)

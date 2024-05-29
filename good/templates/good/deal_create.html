@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% block deal_create %}
+
+<div class="card" style="width: 30rem;">
+  <div class="card-body">
+    <form method="post" action="{% url 'deal_create' %}" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Создать</button>
+    </form>
+  </div>
+</div>
+
+{% endblock %}

@@ -19,11 +19,24 @@ from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
 
+handler400 = 'good.views.handling_error_400'
+handler401 = 'good.views.handling_error_401'
+handler402 = 'good.views.handling_error_402'
+handler403 = 'good.views.handling_error_403'
+handler404 = 'good.views.handling_error_404'
+# handler500 = 'good.views.handling_error_500'
+
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('good.urls')),
     path('user/', include('user.urls')),
 ]
 
-urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
-urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+if settings.DEBUG:
+    urlpatterns += static(
+        settings.STATIC_URL, document_root=settings.STATIC_ROOT,
+    )
+    urlpatterns += static(
+        settings.MEDIA_URL, document_root=settings.MEDIA_ROOT
+    )

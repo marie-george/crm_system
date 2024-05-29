@@ -37,3 +37,14 @@ class UserLoginForm(AuthenticationForm):
         label='пароль',
         widget=forms.PasswordInput(attrs={'class': 'form-control'})
     )
+
+
+class UserForm(forms.ModelForm):
+
+    class Meta:
+        model = User
+        fields = [
+            'username',
+            'email',
+            'image'
+        ]

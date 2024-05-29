@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% block favourites %}
+<h2>Мои избранные товары</h2>
+<div class="row">
+    {% for favourite in favourites %}
+    <div class="col-md-4">
+        <div class="card" style="width: 20rem; height: 25rem">
+            <img src="{{ favourite.good.image.all.0.image.url }}" class="card-img-top" alt="{{ favourite.good.name }}">
+            <div class="card-body">
+                <h5 class="card-title">{{ favourite.good.name }}</h5>
+                <p class="card-text">Цена: {{ favourite.good.basic_price }}</p>
+                <a href="{% url 'good_detail' pk=favourite.good.pk %}" class="btn btn-primary">Подробнее</a>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}

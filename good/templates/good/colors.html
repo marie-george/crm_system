@@ -1,10 +1,10 @@
 {% extends 'base.html' %}
-{% block categories %}
+{% block colors %}
 <div class="card" style="width: 10rem;">
   <div class="card-body">
-    {% for item in categories %}
+    {% for item in colors %}
         <nav class="ms-5">
-        <a class="p-2 btn btn-outline-primary" href="{% url 'good_category_list' item.pk %}">{{ item.name }}</a>
+        <a class="p-2 btn btn-outline-primary" href="{% url 'good_color_list' item.pk %}">{{ item.color_name }}</a>
         </nav>
     {% endfor %}
   </div>

@@ -1,23 +1,34 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <link href="https://getbootstrap.com/docs/4.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="{% static 'style.css' %}" rel="stylesheet" type="text/css">
     <title>Title</title>
 </head>
 <body>
-<nav class="ms-5">
-    <a class="p-2 btn btn-outline-primary" href="{% url 'good_list' %}"
-       style="position: absolute; left: 70px; top: 20px; ">Список товаров</a>
-</nav>
+
     {% block sidebar %}{% endblock %}
-  {% block good_list %}{% endblock %}
-  {% block good_update %}{% endblock %}
-  {% block good_detail %}{% endblock %}
-  {% block good_delete %}{% endblock %}
-  {% block create_good %}{% endblock %}
-  {% block categories %}{% endblock %}
-  {% block login %}{% endblock %}
-  {% block register %}{% endblock %}
+    {% block good_list %}{% endblock %}
+    {% block good_update %}{% endblock %}
+    {% block good_detail %}{% endblock %}
+    {% block good_delete %}{% endblock %}
+    {% block create_good %}{% endblock %}
+    {% block categories %}{% endblock %}
+    {% block colors %}{% endblock %}
+    {% block login %}{% endblock %}
+    {% block user_profile %}{% endblock %}
+    {% block user_profile_update %}{% endblock %}
+    {% block favourites %}{% endblock %}
+    {% block register %}{% endblock %}
+    {% block deal_create %}{% endblock %}
+    {% block review_create %}{% endblock %}
+    {% block error_400 %}{% endblock %}
+    {% block error_401 %}{% endblock %}
+    {% block error_402 %}{% endblock %}
+    {% block error_403 %}{% endblock %}
+    {% block error_404 %}{% endblock %}
+    {% block error_500 %}{% endblock %}
 </body>
 </html>

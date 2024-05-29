@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% block user_profile %}
+
+<div class="card" style="width: 20rem; height: 25rem">
+  <div class="card-body">
+    <h5 class="card-title">{{ user.username }}</h5>
+    <img src="{{ user.image.url }}" height=80px width=80px>
+    <p></p>
+    <p class="card-text">Email: {{ user.email }}</p>
+    <a href="{% url 'user_profile_update' user.pk %}" class="btn btn-outline-success"
+       style="position: absolute; left: 20px; top: 200px;">Обновить</a>
+    <a href="{% url 'good_list' %}" class="btn btn-outline-primary"
+       style="position: absolute; left: 20px; top: 250px;">Назад</a>
+    <form method="post" style="margin-top: 120px;" action="{% url 'user_profile_delete' user.pk %}">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Удалить</button>
+        <a href="{% url 'favourites' %}" class="btn btn-outline-primary"
+               style="position: absolute; left: 20px; top: 340px;">Список избранных товаров</a>
+    </form>
+  </div>
+</div>
+{% endblock %}

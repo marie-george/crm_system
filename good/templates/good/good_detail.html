@@ -5,15 +5,29 @@
   <div class="card-body">
     <h5 class="card-title">{{ good.name }}</h5>
     <img src="{{ good.image.all.0.image.url }}" height="100%" width="100%">
-    <p class="card-text">{{ good.description }}</p>
-    <p class="card-text">{{ good.basic_price }}</p>
-    <p class="card-text">{{ good.category }}</p>
+    <p class="card-text">Описание: {{ good.description }}</p>
+    <p class="card-text">Цена: {{ good.basic_price }}</p>
+    <p class="card-text">Категория: {{ good.category }}</p>
+    <p class="card-text">Дата доставки: {{ good.delivery_date }}</p>
+    <p class="card-text">
+      Цвета:
+      {% for color in good.colors.all %}
+        {{ color.color_name }},
+      {% endfor %}
+      <p class="card-text">
+    Отзывы:
+      {% for review in reviews %}
+        {{ review.review }},
+      {% endfor %}
+    </p>
     <a href="{% url 'good_list' %}" class="btn btn-outline-primary">Назад</a>
   </div>
 </div>
-
-
-    <p></p>
-
-
+<a href="{% url 'review_create' good.pk %}" class="btn btn-primary" style="margin-top: 10px;">Написать отзыв</a>
+{% if user.is_authenticated %}
+    <form method="POST" action="{% url 'favourites_create' good.pk %}">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-primary" style="margin-top: 10px;">{% if good in user.favourites.all %}Удалить из избранного{% else %}Добавить в избранное{% endif %}</button>
+    </form>
+{% endif %}
 {% endblock %}

@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% block deal_create %}
+
+<div class="container overflow-hidden">
+<div class="row">
+    <div class="card-deck">
+        {% for object in deals %}
+        <div class="card bg-light mb-3">
+            <h5 class="card-header bg-secondary text-white">{{ object.deal_name }}</h5>
+            <div class="card-body">
+                <li class="card-text" style="margin-left: 10px;">Клиент: {{ object.client }}</li>
+                <li class="card-text" style="margin-left: 10px;">Товары:
+                    {% for good in object.goods.all %}
+                     {{ good.name }},
+                    {% endfor %}
+                </li>
+
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    </div>
+</div>
+
+{% endblock %}
