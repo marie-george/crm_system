@@ -226,6 +226,7 @@ class FavouritesCreateView(LoginRequiredMixin, View):
         else:
             # Если нет, то добавляем в избранное
             Favourite.objects.create(user=request.user, good=good)
+            # good.users_has_in_favourite
         return redirect('good_detail', pk=good_id)
 
 

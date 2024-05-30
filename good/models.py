@@ -63,6 +63,13 @@ class Good(models.Model):
         blank=True,
         null=True
     )
+    users_has_in_favourite = models.ManyToManyField(
+        User,
+        blank=True,
+        null=True,
+        related_name='users_has_in_favourite',
+        verbose_name='пользователи, у которых в избранном'
+    )
 
     def save(self, *args, **kwargs):
         procent_with_discount = 100 - self.discount_procent
@@ -167,3 +174,6 @@ class Favourite(models.Model):
     class Meta:
         verbose_name = 'Избранный товар'
         verbose_name_plural = 'Избранные товары'
+
+    def __str__(self):
+        return str(self.id)

@@ -55,13 +55,13 @@
             <form method="POST" action="{% url 'favourites_create' object.pk %}">
               {% csrf_token %}
               <button type="submit" class="btn btn-primary" style="margin-top: 10px;">
-                {% for favorite_good in user.user.all %}
-                  {% if object.pk == favorite_good.good.pk %}
+
+                  {% if user in object.users_has_in_favourite.all %}
                     Удалить из избранного
                   {% else %}
                     Добавить в избранное
                   {% endif %}
-                {% endfor %}
+
               </button>
             </form>
           {% endif %}

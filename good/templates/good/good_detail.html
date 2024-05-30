@@ -24,10 +24,4 @@
   </div>
 </div>
 <a href="{% url 'review_create' good.pk %}" class="btn btn-primary" style="margin-top: 10px;">Написать отзыв</a>
-{% if user.is_authenticated %}
-    <form method="POST" action="{% url 'favourites_create' good.pk %}">
-        {% csrf_token %}
-        <button type="submit" class="btn btn-primary" style="margin-top: 10px;">{% if good in user.favourites.all %}Удалить из избранного{% else %}Добавить в избранное{% endif %}</button>
-    </form>
-{% endif %}
 {% endblock %}
